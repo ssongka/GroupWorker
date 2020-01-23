@@ -1,0 +1,29 @@
+<seelog type="asyncloop" minlevel="trace" maxlevel="error">
+    <outputs formatid="fmtinfo">
+        <console />
+
+        <filter levels="trace">
+            <file path="./log/all.log"/>
+        </filter>
+
+        <filter levels="debug">
+            <file path="./log/debug.log"/>
+        </filter>
+
+        <filter levels="info">
+            <rollingfile type="date" namemode="prefix" filename="./logs/info.log" datepattern="2006-01-02" maxrolls="30" />
+        </filter>
+
+        <filter levels="error">
+            <rollingfile type="date" namemode="prefix" filename="./log/error" datepattern="2006-01-02" maxrolls="30" />
+        </filter>
+
+        <rollingfile type="date" namemode="prefix" filename="./log/all" datepattern="2006-01-02" maxrolls="30" />
+
+    </outputs>
+
+    <formats>
+        <format id="fmtinfo" format="[%Time][%Level] %Msg%n"/>
+    </formats>
+
+</seelog>
