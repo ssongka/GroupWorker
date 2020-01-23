@@ -6,7 +6,7 @@ func WorkerInitialize() {
 	_worker = new(workerContext)
 	_worker.WorkerQueueMap = make(map[int64]chan chan *WorkRequest, 30)
 	_worker.WorkQueue = make(chan *WorkRequest, 1)
-	//_worker.StartWorkDispatch()
+	_worker.StartWorkDispatch()
 }
 
 func (w *workerContext) NewWorker(GroupNo int64, workerQueue chan chan *WorkRequest) Worker {
@@ -38,7 +38,7 @@ func (w *Worker) Start() {
 
 	slowChecker.Check("InitializeGuildInfo")
 
-	//초기화에 성공하면 워커에 길드 정보를 넣는다
+	//초기화에 성공하면 워커에 정보를 넣는다
 	w.GroupInfo = groupInfo
 
 	go func() {
