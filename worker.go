@@ -34,9 +34,9 @@ func (w *Worker) Start() {
 
 	//그룹 정보 초기화
 	slowChecker := _util.NewSlowChecker(_config.GetLong("SlowCheck", 1000), 0, w.GroupNo)
-	groupInfo, _ := InitializeGuildInfo(w.GroupNo)
+	groupInfo, _ := InitializeGroupInfo(w.GroupNo)
 
-	slowChecker.Check("InitializeGuildInfo")
+	slowChecker.Check("InitializeGroupInfo")
 
 	//초기화에 성공하면 워커에 정보를 넣는다
 	w.GroupInfo = groupInfo
@@ -72,8 +72,11 @@ func (w *Worker) Start() {
 /**
 그룹 큐의 정보를 초기화 후 반환한다
 */
-func InitializeGuildInfo(no int64) (*GroupInfo, interface{}) {
-	return new(GroupInfo), nil
+func InitializeGroupInfo(groupNo int64) (*GroupInfo, interface{}) {
+	return &GroupInfo{
+		GroupNo:      groupNo,
+		GroupMembers: make(map[int64]*User),
+	}, nil
 }
 
 //작업큐 중지
