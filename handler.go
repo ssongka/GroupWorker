@@ -29,7 +29,7 @@ func HandlerInitialize() {
 
 func RequestHandle(res http.ResponseWriter, req *http.Request) {
 
-	//필수 파라미터인 cmd와 guildNo를 검사한다
+	//필수 파라미터인 cmd와 groupNo를 검사한다
 	param := newParameters(req)
 	param.PrintDebug()
 
